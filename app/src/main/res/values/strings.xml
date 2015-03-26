@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Guest Book Client</string>
+    <string name="action_about">Tentang</string>
+    <string name="activity_login">Login</string>
+    <string name="activity_view">Data Tamu</string>
+    <string name="action_search">Cari</string>
+    <string name="action_refresh">Refresh</string>
+
+</resources>

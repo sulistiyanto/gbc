@@ -12,21 +12,32 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/familyname"
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/familysex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text View"/>
+            <TextView
+                android:id="@+id/familyname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium Text"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <TextView
+                android:id="@+id/familysex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text View"/>
+
+            </LinearLayout>
 
     </LinearLayout>
 

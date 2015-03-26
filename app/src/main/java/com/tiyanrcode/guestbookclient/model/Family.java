@@ -5,26 +5,8 @@ package com.tiyanrcode.guestbookclient.model;
  */
 public class Family {
 
-    String guest_name = "";
-    String guest_foto = "";
     String family_name = "";
     String family_sex = "";
-
-    public String getGuest_name() {
-        return guest_name;
-    }
-
-    public void setGuest_name(String guest_name) {
-        this.guest_name = guest_name;
-    }
-
-    public String getGuest_foto() {
-        return guest_foto;
-    }
-
-    public void setGuest_foto(String guest_foto) {
-        this.guest_foto = guest_foto;
-    }
 
     public String getFamily_name() {
         return family_name;

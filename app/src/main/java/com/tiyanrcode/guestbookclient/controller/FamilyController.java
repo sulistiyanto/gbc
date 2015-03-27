@@ -36,7 +36,7 @@ public class FamilyController extends ActionBarActivity {
     Family family;
     ArrayList<Family> families = new ArrayList<Family>();
     ListView listView;
-    TextView txtCount;
+    TextView txtCount, txtName;
     String url = "http://"+ip2+"/guestbook/family_service.php";
     String book_id, guest_name;
     FamilyBaseAdapter familyBaseAdapter;
@@ -48,6 +48,7 @@ public class FamilyController extends ActionBarActivity {
         getSupportActionBar().hide();
         listView = (ListView) findViewById(R.id.listMenu1);
         txtCount = (TextView) findViewById(R.id.count);
+        txtName = (TextView) findViewById(R.id.guestname2);
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
@@ -57,6 +58,7 @@ public class FamilyController extends ActionBarActivity {
             Log.d("guest 1 ", guest_name);
             GetDataFamily getDataFamily = new GetDataFamily();
             getDataFamily.init(FamilyController.this, jsresult, book_id, guest_name, url);
+            txtName.setText(guest_name);
         }
     }
 

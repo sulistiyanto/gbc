@@ -1,18 +1,22 @@
 package com.tiyanrcode.guestbookclient.controller;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.FamilyBaseAdapter;
 import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
 import com.tiyanrcode.guestbookclient.getdata.GetDataFamily;
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
+import com.tiyanrcode.guestbookclient.model.Count;
 import com.tiyanrcode.guestbookclient.model.Family;
 import com.tiyanrcode.guestbookclient.model.Guest;
 
@@ -32,6 +36,7 @@ public class FamilyController extends ActionBarActivity {
     Family family;
     ArrayList<Family> families = new ArrayList<Family>();
     ListView listView;
+    TextView txtCount;
     String url = "http://"+ip2+"/guestbook/family_service.php";
     String book_id, guest_name;
     FamilyBaseAdapter familyBaseAdapter;
@@ -42,6 +47,8 @@ public class FamilyController extends ActionBarActivity {
         setContentView(R.layout.family);
         getSupportActionBar().hide();
         listView = (ListView) findViewById(R.id.listMenu1);
+        txtCount = (TextView) findViewById(R.id.count);
+
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
             book_id = bundle.getString("book_id");
@@ -70,13 +77,16 @@ public class FamilyController extends ActionBarActivity {
             }
             familyBaseAdapter = new FamilyBaseAdapter(FamilyController.this, families);
             listView.setAdapter(familyBaseAdapter);
-
+            int total = listView.getAdapter().getCount();
+            txtCount.setText(""+ (total + 1));
         }
     };
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
+
 }

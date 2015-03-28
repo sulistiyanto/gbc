@@ -21,7 +21,6 @@ import java.util.List;
 public class GetDataGuest extends AsyncTask<Object, Object, Object> {
 
     private JSONParser jsonParser;
-    ArrayList<String> d;
     JsonObjectResult jsonObjectResult;
     Context context;
     ProgressDialog progressDialog;

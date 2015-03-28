@@ -25,11 +25,11 @@ public class GetDataFamily extends AsyncTask<Object, Object, Object> {
     Context context;
     ProgressDialog progressDialog;
 
-    public  void init(Context context, JsonObjectResult jsonObjectResult, String book_id, String guest_name, String url){
+    public  void init(Context context, JsonObjectResult jsonObjectResult, String book_id, String guest_id, String url){
         this.context = context;
         this.jsonObjectResult = jsonObjectResult;
         GetDataFamily getDataFamily = this;
-        getDataFamily.execute(url, book_id, guest_name,"");
+        getDataFamily.execute(url, book_id, guest_id,"");
     }
 
     @Override
@@ -45,14 +45,14 @@ public class GetDataFamily extends AsyncTask<Object, Object, Object> {
         JSONObject jsonObject = null;
         String url = (String) params[0];
         String bookId = (String) params[1];
-        String guestName = (String) params[2];
+        String guestId = (String) params[2];
         Log.i("url", url);
         Log.i("bookId", bookId);
-        Log.i("guestName", guestName);
+        Log.i("guestId", guestId);
         jsonParser = new JSONParser();
         List<NameValuePair> dataJson = new ArrayList<NameValuePair>();
         dataJson.add(new BasicNameValuePair("book_id", bookId));
-        dataJson.add(new BasicNameValuePair("guest_name", guestName));
+        dataJson.add(new BasicNameValuePair("guest_id", guestId));
         try {
             jsonObject = jsonParser.getJsonObject(url, "POST", dataJson);
         } catch (IOException e) {

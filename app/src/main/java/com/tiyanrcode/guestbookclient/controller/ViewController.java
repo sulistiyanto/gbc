@@ -35,7 +35,6 @@ public class ViewController extends ActionBarActivity {
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;
-    BookIdController book = new BookIdController();
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
     String url = "http://"+ip2+"/guestbook/guest_service.php";
@@ -48,12 +47,9 @@ public class ViewController extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_guest);
         listView =(ListView) findViewById(R.id.listMenu);
-
-       // bookID = (TextView) findViewById(R.id.bookID);
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
             book_id = bundle.getString("book_id");
-           // bookID.setText(book_id);
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(ViewController.this, jsresult, book_id, url);
         }
@@ -83,7 +79,9 @@ public class ViewController extends ActionBarActivity {
                     Bundle bundle = new Bundle();
                     Intent intent = new Intent(ViewController.this, FamilyController.class);
                     bundle.putString("book_id", book_id);
+                    bundle.putString("guest_id", guests.get(position).getGuest_id());
                     bundle.putString("guest_name", guests.get(position).getGuest_name());
+                    bundle.putString("guest_foto", guests.get(position).getGuest_foto());
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }

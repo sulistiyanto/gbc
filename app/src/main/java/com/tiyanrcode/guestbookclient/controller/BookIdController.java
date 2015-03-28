@@ -98,6 +98,7 @@ public class BookIdController extends ActionBarActivity {
                 bundle.putString("book_id", txtBookId.getText().toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {
                 showAlert();
             }

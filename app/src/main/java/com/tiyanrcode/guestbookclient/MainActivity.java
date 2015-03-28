@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
                 Intent intent = new Intent(MainActivity.this, LoginController.class);
                 startActivity(intent);
                 finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.move);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
         },SPLAH_TIMEOUT);
     }

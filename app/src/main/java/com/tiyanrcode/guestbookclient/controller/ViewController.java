@@ -3,7 +3,6 @@ package com.tiyanrcode.guestbookclient.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
  */
 public class ViewController extends ActionBarActivity{
 
-    private SearchView mSearchView;
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;
@@ -113,4 +111,9 @@ public class ViewController extends ActionBarActivity{
         }
     }
 
+   /* @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }*/
 }

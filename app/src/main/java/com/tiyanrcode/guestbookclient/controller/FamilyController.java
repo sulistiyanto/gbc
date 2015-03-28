@@ -53,7 +53,7 @@ public class FamilyController extends ActionBarActivity {
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
-            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            overridePendingTransition(R.anim.pull_in_down, R.anim.push_out_up);
             book_id = bundle.getString("book_id");
             guest_id = bundle.getString("guest_id");
             guest_name = bundle.getString("guest_name");
@@ -93,7 +93,7 @@ public class FamilyController extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+        overridePendingTransition(R.anim.pull_in_up, R.anim.push_out_down);
         finish();
     }
 

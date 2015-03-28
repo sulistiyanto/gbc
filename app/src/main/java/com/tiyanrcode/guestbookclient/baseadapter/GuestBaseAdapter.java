@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tiyanrcode.guestbookclient.R;
-import com.tiyanrcode.guestbookclient.configure.RoundImage;
 import com.tiyanrcode.guestbookclient.model.Guest;
 
 import java.io.InputStream;

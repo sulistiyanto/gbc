@@ -15,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.R;
-import com.tiyanrcode.guestbookclient.configure.ClientToServer;
-import com.tiyanrcode.guestbookclient.configure.RoundImage;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -48,7 +46,6 @@ public class BookIdController extends ActionBarActivity {
     private static long back_pressed_time;
     private static long PERIOD = 1000;
     ImageView imageView1;
-    RoundImage roundedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

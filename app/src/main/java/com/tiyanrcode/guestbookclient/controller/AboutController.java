@@ -15,11 +15,13 @@ public class AboutController extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about);
         getSupportActionBar().hide();
+        overridePendingTransition(R.anim.pull_in_down, R.anim.push_out_up);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_up, R.anim.push_out_down);
         finish();
     }
 }

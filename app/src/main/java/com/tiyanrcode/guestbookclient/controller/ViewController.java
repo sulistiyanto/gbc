@@ -44,6 +44,7 @@ public class ViewController extends ActionBarActivity{
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
             book_id = bundle.getString("book_id");
+            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(ViewController.this, jsresult, book_id, url);
         }
@@ -111,9 +112,9 @@ public class ViewController extends ActionBarActivity{
         }
     }
 
-   /* @Override
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
-    }*/
+    }
 }

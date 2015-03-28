@@ -28,7 +28,7 @@ public class GuestBaseAdapter extends BaseAdapter{
     final String ip2 = "10.0.2.2";
     private  static ArrayList<Guest> searchArrayList;
     private LayoutInflater mInflater;
-    String urlpic = "http://"+ip2+"/guestbook/images/";
+    String urlpic = "http://"+ip+"/guestbook/images/";
 
     public GuestBaseAdapter(Context context, ArrayList<Guest> results) {
         searchArrayList =results;

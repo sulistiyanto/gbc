@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.FamilyBaseAdapter;
+import com.tiyanrcode.guestbookclient.configure.RoundedImageView;
 import com.tiyanrcode.guestbookclient.getdata.GetDataFamily;
 import com.tiyanrcode.guestbookclient.model.Family;
 
@@ -35,8 +36,8 @@ public class FamilyController extends ActionBarActivity {
     ListView listView;
     TextView txtCount, txtName;
     ImageView imgFoto;
-    String url = "http://"+ip2+"/guestbook/family_service.php";
-    String urlpic = "http://"+ip2+"/guestbook/images/";
+    String url = "http://"+ip+"/guestbook/family_service.php";
+    String urlpic = "http://"+ip+"/guestbook/images/";
     String book_id, guest_id, guest_name, guest_foto;
     FamilyBaseAdapter familyBaseAdapter;
 
@@ -49,22 +50,18 @@ public class FamilyController extends ActionBarActivity {
         txtCount = (TextView) findViewById(R.id.count);
         txtName = (TextView) findViewById(R.id.guestname2);
         imgFoto = (ImageView) findViewById(R.id.imgfoto);
-
-
         Bundle bundle = this.getIntent().getExtras();
-        if (bundle.containsKey("book_id")){
+
+        if (bundle.containsKey("book_id"))
             overridePendingTransition(R.anim.pull_in_down, R.anim.push_out_up);
             book_id = bundle.getString("book_id");
             guest_id = bundle.getString("guest_id");
             guest_name = bundle.getString("guest_name");
             guest_foto = bundle.getString("guest_foto");
-            Log.d("book 1 ", book_id);
-            Log.d("guest 1 ", guest_foto);
             GetDataFamily getDataFamily = new GetDataFamily();
             getDataFamily.init(FamilyController.this, jsresult, book_id, guest_id, url);
             txtName.setText(guest_name);
             new DownloadImageTask(imgFoto).execute(urlpic+guest_foto);
-        }
     }
 
     public GetDataFamily.JsonObjectResult jsresult = new GetDataFamily.JsonObjectResult() {
@@ -126,10 +123,9 @@ public class FamilyController extends ActionBarActivity {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             if (bitmap != null) {
-                Bitmap bmp2 = Bitmap.createScaledBitmap(bitmap, 250, 250, true);
+                Bitmap bmp2 = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
                 bmImage.setImageBitmap(bmp2);
             }
         }
     }
-
 }

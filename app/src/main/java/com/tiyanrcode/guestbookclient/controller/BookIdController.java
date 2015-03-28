@@ -3,8 +3,6 @@ package com.tiyanrcode.guestbookclient.controller;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -45,7 +43,6 @@ public class BookIdController extends ActionBarActivity {
     ResponseHandler<String> responseHandler;
     private static long back_pressed_time;
     private static long PERIOD = 1000;
-    ImageView imageView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +76,7 @@ public class BookIdController extends ActionBarActivity {
     void checkBookId(){
         try {
             httpClient = new DefaultHttpClient();
-            httpPost = new HttpPost("http://"+ip2+"/guestbook/book_id.php");
+            httpPost = new HttpPost("http://"+ip+"/guestbook/book_id.php");
             //add data
             nameValuePairs = new ArrayList<NameValuePair>();
             //username
@@ -95,7 +92,6 @@ public class BookIdController extends ActionBarActivity {
                 bundle.putString("book_id", txtBookId.getText().toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
-
             } else {
                 showAlert();
             }

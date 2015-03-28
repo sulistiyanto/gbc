@@ -31,7 +31,7 @@ public class ViewController extends ActionBarActivity{
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
-    String url = "http://"+ip2+"/guestbook/guest_service.php";
+    String url = "http://"+ip+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
 
@@ -101,11 +101,6 @@ public class ViewController extends ActionBarActivity{
                 startActivity(intent);
                 return true;
             case  R.id.action_refresh:
-               /* listView.setAdapter(null);
-                guestBaseAdapter.updateAdapter(guests);
-                GetDataGuest getDataGuest = new GetDataGuest();
-                getDataGuest.init(ViewController.this, jsresult, book_id, url);
-                guestBaseAdapter.updateAdapter(guests);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

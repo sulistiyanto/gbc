@@ -1,22 +1,15 @@
 package com.tiyanrcode.guestbookclient.baseadapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.model.Family;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**

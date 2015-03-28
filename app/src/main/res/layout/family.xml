@@ -31,11 +31,12 @@
         </LinearLayout>
 
 
-    <ImageView
+    <com.tiyanrcode.guestbookclient.configure.RoundedImageView
         android:id="@+id/imgfoto"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@drawable/logo"/>
 
     <TextView

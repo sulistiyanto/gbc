@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.FamilyBaseAdapter;
 import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
+import com.tiyanrcode.guestbookclient.configure.CircleImage;
 import com.tiyanrcode.guestbookclient.getdata.GetDataFamily;
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
 import com.tiyanrcode.guestbookclient.model.Count;
@@ -57,6 +58,7 @@ public class FamilyController extends ActionBarActivity {
         txtCount = (TextView) findViewById(R.id.count);
         txtName = (TextView) findViewById(R.id.guestname2);
         imgFoto = (ImageView) findViewById(R.id.imgfoto);
+
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){

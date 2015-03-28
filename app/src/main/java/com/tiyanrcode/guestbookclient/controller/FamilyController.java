@@ -1,28 +1,19 @@
 package com.tiyanrcode.guestbookclient.controller;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.FamilyBaseAdapter;
-import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
-import com.tiyanrcode.guestbookclient.configure.CircleImage;
 import com.tiyanrcode.guestbookclient.getdata.GetDataFamily;
-import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
-import com.tiyanrcode.guestbookclient.model.Count;
 import com.tiyanrcode.guestbookclient.model.Family;
-import com.tiyanrcode.guestbookclient.model.Guest;
 
 import org.json.JSONArray;
 import org.json.JSONException;

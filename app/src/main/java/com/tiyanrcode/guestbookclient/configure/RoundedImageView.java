@@ -26,7 +26,7 @@ public class RoundedImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float radius = 90.0f; // angle of round corners
+        float radius = 140.0f; // angle of round corners
         Path clipPath = new Path();
         RectF rect = new RectF(0, 0, this.getWidth(), this.getHeight());
         clipPath.addRoundRect(rect, radius, radius, Path.Direction.CW);

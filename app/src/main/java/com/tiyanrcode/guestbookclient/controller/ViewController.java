@@ -1,21 +1,16 @@
 package com.tiyanrcode.guestbookclient.controller;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.tiyanrcode.guestbookclient.configure.RoundImage;
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
 import com.tiyanrcode.guestbookclient.model.Guest;
 import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
@@ -30,8 +25,9 @@ import java.util.ArrayList;
 /**
  * Created by sulistiyanto on 3/21/2015.
  */
-public class ViewController extends ActionBarActivity {
+public class ViewController extends ActionBarActivity{
 
+    private SearchView mSearchView;
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;

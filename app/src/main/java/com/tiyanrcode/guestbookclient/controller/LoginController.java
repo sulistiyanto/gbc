@@ -114,6 +114,7 @@ public class LoginController extends ActionBarActivity {
                     }
                 });
                 startActivity(new Intent(LoginController.this, BookIdController.class));
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {
                 showAlert();
             }

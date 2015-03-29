@@ -3,12 +3,16 @@ package com.tiyanrcode.guestbookclient.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
 import com.tiyanrcode.guestbookclient.model.Guest;
@@ -30,6 +34,7 @@ public class ViewController extends ActionBarActivity{
     final String ip2 = "10.0.2.2";
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
+    ArrayList<Guest> filterGuests = new ArrayList<Guest>();
     ListView listView;
     String url = "http://"+ip+"/guestbook/guest_service.php";
     String book_id;
@@ -47,6 +52,7 @@ public class ViewController extends ActionBarActivity{
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(ViewController.this, jsresult, book_id, url);
+            listView.setTextFilterEnabled(true);
         }
     }
 
@@ -100,8 +106,6 @@ public class ViewController extends ActionBarActivity{
                 Intent intent = new Intent(ViewController.this, AboutController.class);
                 startActivity(intent);
                 return true;
-            case  R.id.action_refresh:
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -112,4 +116,6 @@ public class ViewController extends ActionBarActivity{
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
+
+
 }

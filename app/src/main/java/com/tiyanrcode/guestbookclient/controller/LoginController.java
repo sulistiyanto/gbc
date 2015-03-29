@@ -107,12 +107,6 @@ public class LoginController extends ActionBarActivity {
                 }
             });
             if (response.equalsIgnoreCase("User Found")){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(LoginController.this, "Berhasil Masuk", Toast.LENGTH_SHORT).show();
-                    }
-                });
                 startActivity(new Intent(LoginController.this, BookIdController.class));
                 overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             } else {

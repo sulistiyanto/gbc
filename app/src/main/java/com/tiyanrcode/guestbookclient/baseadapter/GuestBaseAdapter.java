@@ -104,7 +104,7 @@ public class GuestBaseAdapter extends BaseAdapter{
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             if (bitmap != null) {
-                Bitmap bmp2 = Bitmap.createScaledBitmap(bitmap, 72, 72, true);
+                Bitmap bmp2 = Bitmap.createScaledBitmap(bitmap, 90, 90, true);
                 bmImage.setImageBitmap(bmp2);
             }
         }

@@ -76,7 +76,7 @@ public class BookIdController extends ActionBarActivity {
     void checkBookId(){
         try {
             httpClient = new DefaultHttpClient();
-            httpPost = new HttpPost("http://"+ip+"/guestbook/book_id.php");
+            httpPost = new HttpPost("http://"+ip2+"/guestbook/book_id.php");
             //add data
             nameValuePairs = new ArrayList<NameValuePair>();
             //username

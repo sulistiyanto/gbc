@@ -8,6 +8,7 @@ public class Guest {
     String guest_id;
     String guest_name = "";
     String guest_foto = "";
+    String guest_presence = "";
 
     public String getGuest_id() {
         return guest_id;
@@ -31,5 +32,13 @@ public class Guest {
 
     public void setGuest_foto(String guest_foto) {
         this.guest_foto = guest_foto;
+    }
+
+    public String getGuest_presence() {
+        return guest_presence;
+    }
+
+    public void setGuest_presence(String guest_presence) {
+        this.guest_presence = guest_presence;
     }
 }

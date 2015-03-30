@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +8,71 @@
     android:orientation="vertical"
     tools:context="com.tiyanrcode.guestbookclient.controller.FamilyController">
 
+    <ImageView
+        android:id="@+id/imgfoto"
+        android:layout_marginTop="10dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_below="@+id/imgfoto"
+        android:id="@+id/l1"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <CheckBox
+            android:id="@+id/checkname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/guestname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#ffffff"
+        android:layout_below="@+id/l1">
+        <ListView
+            android:id="@+id/listMenu1"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="175dp"
+            tools:listitem="@layout/custom_family">
+        </ListView>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/l2"
+        android:id="@+id/l3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <TextView
@@ -23,58 +84,22 @@
 
         <TextView
             android:id="@+id/count"
+            android:padding="5dp"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
-        </LinearLayout>
+    </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/imgfoto"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo"/>
-
-    <TextView
+    <ImageButton
         android:layout_marginTop="10dp"
-        android:id="@+id/guestname2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_below="@+id/l3"
+        android:src="@drawable/custom_button"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"/>
 
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:orientation="horizontal">
-
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/abc_popup_background_mtrl_mult">
-
-        <ListView
-            android:id="@+id/listMenu1"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="212dp"
-            tools:listitem="@layout/custom_family">
-        </ListView>
-        </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HADIR"/>
-
-</LinearLayout>
+</RelativeLayout>

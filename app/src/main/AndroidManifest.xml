@@ -36,6 +36,9 @@
         <activity
             android:name=".controller.FamilyController" >
         </activity>
+        <activity
+            android:name=".controller.SearchController" >
+        </activity>
     </application>
 
 </manifest>

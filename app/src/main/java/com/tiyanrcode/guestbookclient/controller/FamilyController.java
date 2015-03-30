@@ -1,18 +1,16 @@
 package com.tiyanrcode.guestbookclient.controller;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.FamilyBaseAdapter;
-import com.tiyanrcode.guestbookclient.configure.RoundedImageView;
+import com.tiyanrcode.guestbookclient.configure.DownloadImageTask;
 import com.tiyanrcode.guestbookclient.getdata.GetDataFamily;
 import com.tiyanrcode.guestbookclient.model.Family;
 
@@ -20,8 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -36,9 +32,10 @@ public class FamilyController extends ActionBarActivity {
     ListView listView;
     TextView txtCount, txtName;
     ImageView imgFoto;
-    String url = "http://"+ip+"/guestbook/family_service.php";
-    String urlpic = "http://"+ip+"/guestbook/images/";
-    String book_id, guest_id, guest_name, guest_foto;
+    CheckBox checkName;
+    String url = "http://"+ip2+"/guestbook/family_service.php";
+    String urlpic = "http://"+ip2+"/guestbook/images/";
+    String book_id, guest_id, guest_name, guest_foto, guest_presence;
     FamilyBaseAdapter familyBaseAdapter;
 
     @Override
@@ -50,18 +47,24 @@ public class FamilyController extends ActionBarActivity {
         txtCount = (TextView) findViewById(R.id.count);
         txtName = (TextView) findViewById(R.id.guestname2);
         imgFoto = (ImageView) findViewById(R.id.imgfoto);
+        checkName = (CheckBox) findViewById(R.id.checkname);
         Bundle bundle = this.getIntent().getExtras();
 
-        if (bundle.containsKey("book_id"))
+        if (bundle.containsKey("book_id")) {
             overridePendingTransition(R.anim.pull_in_down, R.anim.push_out_up);
             book_id = bundle.getString("book_id");
             guest_id = bundle.getString("guest_id");
             guest_name = bundle.getString("guest_name");
             guest_foto = bundle.getString("guest_foto");
+            guest_presence = bundle.getString("guest_presence");
             GetDataFamily getDataFamily = new GetDataFamily();
             getDataFamily.init(FamilyController.this, jsresult, book_id, guest_id, url);
             txtName.setText(guest_name);
-            new DownloadImageTask(imgFoto).execute(urlpic+guest_foto);
+            new DownloadImageTask(imgFoto).execute(urlpic + guest_foto);
+            if (guest_presence.equals("Ya")) {
+                checkName.setChecked(true);
+            }
+        }
     }
 
     public GetDataFamily.JsonObjectResult jsresult = new GetDataFamily.JsonObjectResult() {
@@ -82,7 +85,8 @@ public class FamilyController extends ActionBarActivity {
             familyBaseAdapter = new FamilyBaseAdapter(FamilyController.this, families);
             listView.setAdapter(familyBaseAdapter);
             int total = listView.getAdapter().getCount();
-            txtCount.setText(""+ (total + 1));
+
+                txtCount.setText(""+listView.getAdapter().getCount());
         }
     };
 
@@ -94,38 +98,4 @@ public class FamilyController extends ActionBarActivity {
         finish();
     }
 
-    public class  DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public  DownloadImageTask(ImageView bmImage){
-            this.bmImage = bmImage;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            String urlDisplay = urls[0];
-            Bitmap mIcon = null;
-            try {
-                InputStream inputStream = new URL(urlDisplay).openStream();
-                mIcon = BitmapFactory.decodeStream(inputStream);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
-                Bitmap bmp2 = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
-                bmImage.setImageBitmap(bmp2);
-            }
-        }
-    }
 }

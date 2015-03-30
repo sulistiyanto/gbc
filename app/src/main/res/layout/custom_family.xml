@@ -8,17 +8,17 @@
     android:id="@+id/linearLayout1"
     tools:context ="com.tiyanrcode.guestbookclient.controller.BookIdController">
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/checkbox"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"/>
+            android:src="@drawable/ic_action_emo_basic"
+            android:padding="7dp"
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,11 +33,23 @@
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-            <TextView
-                android:id="@+id/familysex"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text View"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis kelamin :  "/>
+
+                <TextView
+                    android:id="@+id/familysex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text View"/>
+
+            </LinearLayout>
 
             </LinearLayout>
 

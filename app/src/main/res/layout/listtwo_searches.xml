@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:id="@+id/linearLayout1"
-    tools:context ="com.tiyanrcode.guestbookclient.controller.BookIdController">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -18,11 +12,10 @@
         android:id="@+id/guestfoto"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="center"
         android:src="@drawable/foto"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
@@ -44,15 +37,5 @@
             android:layout_marginLeft="10dp"
             android:text="Text View"/>
 
-        <TextView
-            android:id="@+id/guestpresence"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:gravity="right"
-            android:textColor="@color/list_row_selected_bg"
-            android:text="Text View"/>
-
-        </LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

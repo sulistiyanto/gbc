@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
 import com.tiyanrcode.guestbookclient.model.Guest;
@@ -28,15 +28,14 @@ import java.util.ArrayList;
 /**
  * Created by sulistiyanto on 3/21/2015.
  */
-public class ViewController extends ActionBarActivity{
+public class ViewController extends ActionBarActivity {
 
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
-    ArrayList<Guest> filterGuests = new ArrayList<Guest>();
     ListView listView;
-    String url = "http://"+ip+"/guestbook/guest_service.php";
+    String url = "http://"+ip2+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
 
@@ -66,6 +65,7 @@ public class ViewController extends ActionBarActivity{
                     guest.setGuest_id(jsonArray.getJSONObject(i).getString("guest_id"));
                     guest.setGuest_name(jsonArray.getJSONObject(i).getString("guest_name"));
                     guest.setGuest_foto(jsonArray.getJSONObject(i).getString("guest_foto"));
+                    guest.setGuest_presence(jsonArray.getJSONObject(i).getString("guest_presence"));
                     guests.add(guest);
                 }
             } catch (JSONException e) {
@@ -83,6 +83,7 @@ public class ViewController extends ActionBarActivity{
                     bundle.putString("guest_id", guests.get(position).getGuest_id());
                     bundle.putString("guest_name", guests.get(position).getGuest_name());
                     bundle.putString("guest_foto", guests.get(position).getGuest_foto());
+                    bundle.putString("guest_presence", guests.get(position).getGuest_presence());
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -101,6 +102,8 @@ public class ViewController extends ActionBarActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                Intent intent1 = new Intent(ViewController.this, SearchController.class);
+                startActivity(intent1);
                 return true;
             case R.id.action_about:
                 Intent intent = new Intent(ViewController.this, AboutController.class);
@@ -116,6 +119,5 @@ public class ViewController extends ActionBarActivity{
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
-
 
 }

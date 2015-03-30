@@ -52,6 +52,7 @@ public class FamilyController extends ActionBarActivity {
     ImageButton update;
     String url = "http://"+ip2+"/guestbook/family_service.php";
     String urlpic = "http://"+ip2+"/guestbook/images/";
+    String urlUpdate = "http://"+ip2+"/guestbook/update_guest.php";
     String book_id, guest_id, guest_name, guest_foto, guest_presence;
     FamilyBaseAdapter familyBaseAdapter;
     HttpClient httpClient;
@@ -138,7 +139,7 @@ public class FamilyController extends ActionBarActivity {
     private void update(){
         try {
             httpClient = new DefaultHttpClient();
-            httpPost = new HttpPost("http://"+ip2+"/guestbook/update_guest.php");
+            httpPost = new HttpPost(urlUpdate);
             //add data
             nameValuePairs = new ArrayList<NameValuePair>(2);
             //username

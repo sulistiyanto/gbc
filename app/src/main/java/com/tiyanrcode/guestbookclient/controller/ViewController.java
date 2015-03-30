@@ -86,6 +86,7 @@ public class ViewController extends ActionBarActivity {
                     bundle.putString("guest_presence", guests.get(position).getGuest_presence());
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    onStop();
                 }
             });
         }
@@ -109,6 +110,14 @@ public class ViewController extends ActionBarActivity {
                 Intent intent = new Intent(ViewController.this, AboutController.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_refresh:
+                Bundle bundle = new Bundle();
+                Intent intent2 = new Intent(this, ViewController.class);
+                bundle.putString("book_id", book_id);
+                intent2.putExtras(bundle);
+                startActivity(intent2);
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -120,4 +129,19 @@ public class ViewController extends ActionBarActivity {
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!book_id.equals("")) {
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (book_id.equals("")) {
+
+        }
+    }
 }

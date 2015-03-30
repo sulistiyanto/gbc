@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.R;
+import com.tiyanrcode.guestbookclient.configure.JSONParser;
 import com.tiyanrcode.guestbookclient.configure.SHA1Utility;
 
 import org.apache.http.HttpResponse;
@@ -23,7 +24,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +45,7 @@ public class LoginController extends ActionBarActivity {
     ProgressDialog progressDialog = null;
     ResponseHandler<String> responseHandler;
     String level= "User", passwordEncrypt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

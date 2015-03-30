@@ -8,18 +8,23 @@
     android:orientation="vertical"
     tools:context="com.tiyanrcode.guestbookclient.controller.FamilyController">
 
-    <ImageView
-        android:id="@+id/imgfoto"
-        android:layout_marginTop="10dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo"/>
+    <LinearLayout
+        android:id="@+id/l"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/dialog_frame"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imgfoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo"/>
+        </LinearLayout>
 
     <LinearLayout
-        android:layout_below="@+id/imgfoto"
+        android:layout_below="@+id/l"
         android:id="@+id/l1"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
@@ -58,7 +63,7 @@
             android:id="@+id/listMenu1"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="175dp"
+            android:layout_height="155dp"
             tools:listitem="@layout/custom_family">
         </ListView>
 
@@ -78,7 +83,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumlah Tamu :"
+            android:text="Total Tamu :"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
@@ -88,12 +93,13 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="1"
             android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/update"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

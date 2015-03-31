@@ -103,7 +103,10 @@ public class ViewController extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                Intent intent1 = new Intent(ViewController.this, SearchController.class);
+                Bundle bundle1 = new Bundle();
+                Intent intent1 = new Intent(this, SearchController.class);
+                bundle1.putString("book_id", book_id);
+                intent1.putExtras(bundle1);
                 startActivity(intent1);
                 return true;
             case R.id.action_about:

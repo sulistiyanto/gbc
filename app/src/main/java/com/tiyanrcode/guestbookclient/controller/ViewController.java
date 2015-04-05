@@ -3,21 +3,19 @@ package com.tiyanrcode.guestbookclient.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SearchView;
 
+import com.tiyanrcode.guestbookclient.R;
+import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
 import com.tiyanrcode.guestbookclient.getdata.GetDataGuest;
 import com.tiyanrcode.guestbookclient.model.Guest;
-import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
-import com.tiyanrcode.guestbookclient.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,22 +26,25 @@ import java.util.ArrayList;
 /**
  * Created by sulistiyanto on 3/21/2015.
  */
-public class ViewController extends ActionBarActivity {
+public class ViewController extends ActionBarActivity implements SearchView.OnQueryTextListener{
 
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
+    SearchView mSearchView;
     String url = "http://"+ip2+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
+    Boolean status = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_guest);
+        mSearchView=(SearchView) findViewById(R.id.search2);
         listView =(ListView) findViewById(R.id.listMenu);
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
@@ -51,8 +52,18 @@ public class ViewController extends ActionBarActivity {
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(ViewController.this, jsresult, book_id, url);
-            listView.setTextFilterEnabled(true);
         }
+
+        listView.setTextFilterEnabled(true);
+        setupSearchView();
+    }
+
+    private void setupSearchView()
+    {
+        //mSearchView.setIconifiedByDefault(false);
+        mSearchView.setOnQueryTextListener(this);
+        //mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setQueryHint("Pencarian");
     }
 
     public GetDataGuest.JsonObjectResult jsresult = new GetDataGuest.JsonObjectResult() {
@@ -86,11 +97,13 @@ public class ViewController extends ActionBarActivity {
                     bundle.putString("guest_presence", guests.get(position).getGuest_presence());
                     intent.putExtras(bundle);
                     startActivity(intent);
-                    onStop();
+                    status = true;
                 }
             });
         }
     };
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,13 +115,6 @@ public class ViewController extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                Bundle bundle1 = new Bundle();
-                Intent intent1 = new Intent(this, SearchController.class);
-                bundle1.putString("book_id", book_id);
-                intent1.putExtras(bundle1);
-                startActivity(intent1);
-                return true;
             case R.id.action_about:
                 Intent intent = new Intent(ViewController.this, AboutController.class);
                 startActivity(intent);
@@ -133,18 +139,17 @@ public class ViewController extends ActionBarActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (!book_id.equals("")) {
-
-        }
+    public boolean onQueryTextSubmit(String query) {
+        return false;
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (book_id.equals("")) {
-
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            listView.clearTextFilter();
+        } else {
+            listView.setFilterText(newText);
         }
+        return true;
     }
 }

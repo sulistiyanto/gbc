@@ -25,7 +25,7 @@ public class GetDataGuest extends AsyncTask<Object, Object, Object> {
     Context context;
     ProgressDialog progressDialog;
 
-    public  void init(Context context, JsonObjectResult jsonObjectResult,String book_id, String url){
+    public  void init(Context context, JsonObjectResult jsonObjectResult, String book_id, String url){
         this.context = context;
         this.jsonObjectResult = jsonObjectResult;
         GetDataGuest getDataGuest = this;

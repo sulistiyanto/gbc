@@ -1,15 +1,12 @@
 package com.tiyanrcode.guestbookclient.baseadapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,23 +14,22 @@ import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.configure.DownloadImageTask;
 import com.tiyanrcode.guestbookclient.model.Guest;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by sulistiyanto on 3/21/2015.
  */
-public class GuestBaseAdapter extends BaseAdapter{
+public class GuestBaseAdapter extends BaseAdapter implements Filterable {
 
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
-    private  static ArrayList<Guest> searchArrayList;
+    public ArrayList<Guest> searchArrayList;
+    public ArrayList<Guest> orig;
     private LayoutInflater mInflater;
     String urlpic = "http://"+ip2+"/guestbook/images/";
 
-    public GuestBaseAdapter(Context context, ArrayList<Guest> results) {
-        searchArrayList =results;
+    public GuestBaseAdapter(Context context, ArrayList<Guest> results1) {
+        searchArrayList =results1;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -75,9 +71,45 @@ public class GuestBaseAdapter extends BaseAdapter{
         return convertView;
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final ArrayList<Guest> results = new ArrayList<Guest>();
+                if (orig == null)
+                    orig = searchArrayList;
+                if (constraint != null) {
+                    if (orig != null && orig.size() > 0) {
+                        for (final Guest g : orig) {
+                            if (g.getGuest_name().toLowerCase().contains(constraint.toString())){
+                                results.add(g);
+                            }
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                searchArrayList = (ArrayList<Guest>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     static class ViewHolder {
         TextView guest_name, guest_id, guest_prresence;
         ImageView guest_foto;
+    }
+
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
     }
 
 }

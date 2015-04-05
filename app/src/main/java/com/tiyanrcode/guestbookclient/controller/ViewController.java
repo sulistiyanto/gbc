@@ -56,6 +56,21 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
 
         listView.setTextFilterEnabled(true);
         setupSearchView();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                Intent intent = new Intent(ViewController.this, FamilyController.class);
+                bundle.putString("book_id", book_id);
+                bundle.putString("guest_id", guests.get(position).getGuest_id());
+                bundle.putString("guest_name", guests.get(position).getGuest_name());
+                bundle.putString("guest_foto", guests.get(position).getGuest_foto());
+                bundle.putString("guest_presence", guests.get(position).getGuest_presence());
+                intent.putExtras(bundle);
+                startActivity(intent);
+                status = true;
+            }
+        });
     }
 
     private void setupSearchView()
@@ -85,21 +100,6 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
 
             guestBaseAdapter = new GuestBaseAdapter(ViewController.this, guests);
             listView.setAdapter(guestBaseAdapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Bundle bundle = new Bundle();
-                    Intent intent = new Intent(ViewController.this, FamilyController.class);
-                    bundle.putString("book_id", book_id);
-                    bundle.putString("guest_id", guests.get(position).getGuest_id());
-                    bundle.putString("guest_name", guests.get(position).getGuest_name());
-                    bundle.putString("guest_foto", guests.get(position).getGuest_foto());
-                    bundle.putString("guest_presence", guests.get(position).getGuest_presence());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    status = true;
-                }
-            });
         }
     };
 
@@ -149,7 +149,10 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
             listView.clearTextFilter();
         } else {
             listView.setFilterText(newText);
+
         }
         return true;
     }
+
+
 }

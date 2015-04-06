@@ -112,4 +112,9 @@ public class GuestBaseAdapter extends BaseAdapter implements Filterable {
         super.notifyDataSetChanged();
     }
 
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
 }

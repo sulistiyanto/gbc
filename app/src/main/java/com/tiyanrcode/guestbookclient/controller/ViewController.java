@@ -37,7 +37,6 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
     String url = "http://"+ip2+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
-    Boolean status = false;
 
 
     @Override
@@ -53,7 +52,6 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(ViewController.this, jsresult, book_id, url);
         }
-
         listView.setTextFilterEnabled(true);
         setupSearchView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,7 +66,6 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
                 bundle.putString("guest_presence", guests.get(position).getGuest_presence());
                 intent.putExtras(bundle);
                 startActivity(intent);
-                status = true;
             }
         });
     }
@@ -102,8 +99,6 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
             listView.setAdapter(guestBaseAdapter);
         }
     };
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

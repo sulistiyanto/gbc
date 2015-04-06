@@ -32,17 +32,10 @@
             android:label="@string/activity_view" >
         </activity>
         <activity
-            android:name=".controller.ViewController"
-            android:label="@string/activity_view" >
-        </activity>
-        <activity
             android:name=".controller.AboutController" >
         </activity>
         <activity
             android:name=".controller.FamilyController" >
-        </activity>
-        <activity
-            android:name=".controller.SearchController" >
         </activity>
     </application>
 

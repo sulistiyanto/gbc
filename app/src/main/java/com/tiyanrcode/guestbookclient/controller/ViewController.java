@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.tiyanrcode.guestbookclient.R;
 import com.tiyanrcode.guestbookclient.baseadapter.GuestBaseAdapter;
@@ -57,7 +59,7 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle = new Bundle();
+                /*Bundle bundle = new Bundle();
                 Intent intent = new Intent(ViewController.this, FamilyController.class);
                 bundle.putString("book_id", book_id);
                 bundle.putString("guest_id", guests.get(position).getGuest_id());
@@ -65,7 +67,9 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
                 bundle.putString("guest_foto", guests.get(position).getGuest_foto());
                 bundle.putString("guest_presence", guests.get(position).getGuest_presence());
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
+
+                Object MyObject=(Object) parent.getAdapter().getItem(position);
             }
         });
     }

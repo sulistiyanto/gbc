@@ -1,6 +1,7 @@
 package com.tiyanrcode.guestbookclient.controller;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -59,17 +60,18 @@ public class ViewController extends ActionBarActivity implements SearchView.OnQu
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Bundle bundle = new Bundle();
+                final Guest mnotes = (Guest) parent
+                        .getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), mnotes.getGuest_id(),Toast.LENGTH_SHORT).show();
+               Bundle bundle = new Bundle();
                 Intent intent = new Intent(ViewController.this, FamilyController.class);
                 bundle.putString("book_id", book_id);
-                bundle.putString("guest_id", guests.get(position).getGuest_id());
-                bundle.putString("guest_name", guests.get(position).getGuest_name());
-                bundle.putString("guest_foto", guests.get(position).getGuest_foto());
-                bundle.putString("guest_presence", guests.get(position).getGuest_presence());
+                bundle.putString("guest_id", mnotes.getGuest_id());
+                bundle.putString("guest_name", mnotes.getGuest_name());
+                bundle.putString("guest_foto", mnotes.getGuest_foto());
+                bundle.putString("guest_presence", mnotes.getGuest_presence());
                 intent.putExtras(bundle);
-                startActivity(intent);*/
-
-                Object MyObject=(Object) parent.getAdapter().getItem(position);
+                startActivity(intent);
             }
         });
     }

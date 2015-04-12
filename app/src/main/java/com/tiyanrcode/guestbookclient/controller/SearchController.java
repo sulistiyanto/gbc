@@ -1,11 +1,9 @@
 package com.tiyanrcode.guestbookclient.controller;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,13 +27,14 @@ import java.util.ArrayList;
 /**
  * Created by sulistiyanto on 3/21/2015.
  */
-public class ViewController extends ActionBarActivity{
+public class SearchController extends ActionBarActivity implements SearchView.OnQueryTextListener{
 
     final String ip = "192.168.165.1";
     final String ip2 = "10.0.2.2";
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
+    SearchView mSearchView;
     String url = "http://"+ip2+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
@@ -44,15 +43,19 @@ public class ViewController extends ActionBarActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_guest);
+        setContentView(R.layout.search_guest);
+        getSupportActionBar().hide();
+        mSearchView=(SearchView) findViewById(R.id.search2);
         listView =(ListView) findViewById(R.id.listMenu);
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
             book_id = bundle.getString("book_id");
             overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             GetDataGuest getDataGuest = new GetDataGuest();
-            getDataGuest.init(ViewController.this, jsresult, book_id, url);
+            getDataGuest.init(SearchController.this, jsresult, book_id, url);
         }
+        listView.setTextFilterEnabled(true);
+        setupSearchView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -60,7 +63,7 @@ public class ViewController extends ActionBarActivity{
                         .getItemAtPosition(position);
                 //Toast.makeText(getApplicationContext(), mnotes.getGuest_id(),Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
-                Intent intent = new Intent(ViewController.this, FamilyController.class);
+                Intent intent = new Intent(SearchController.this, FamilyController.class);
                 bundle.putString("book_id", book_id);
                 bundle.putString("guest_id", mnotes.getGuest_id());
                 bundle.putString("guest_name", mnotes.getGuest_name());
@@ -68,10 +71,18 @@ public class ViewController extends ActionBarActivity{
                 bundle.putString("guest_presence", mnotes.getGuest_presence());
                 intent.putExtras(bundle);
                 startActivity(intent);
+                finish();
             }
         });
     }
 
+    private void setupSearchView()
+    {
+        mSearchView.setIconifiedByDefault(false);
+        mSearchView.setOnQueryTextListener(this);
+        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setQueryHint("Pencarian");
+    }
 
     public GetDataGuest.JsonObjectResult jsresult = new GetDataGuest.JsonObjectResult() {
         @Override
@@ -90,7 +101,7 @@ public class ViewController extends ActionBarActivity{
                 e.printStackTrace();
             }
 
-            guestBaseAdapter = new GuestBaseAdapter(ViewController.this, guests);
+            guestBaseAdapter = new GuestBaseAdapter(SearchController.this, guests);
             listView.setAdapter(guestBaseAdapter);
         }
     };
@@ -106,23 +117,16 @@ public class ViewController extends ActionBarActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
-                Intent intent = new Intent(ViewController.this, AboutController.class);
+                Intent intent = new Intent(SearchController.this, AboutController.class);
                 startActivity(intent);
                 return true;
             case R.id.action_refresh:
                 Bundle bundle = new Bundle();
-                Intent intent2 = new Intent(this, ViewController.class);
+                Intent intent2 = new Intent(this, SearchController.class);
                 bundle.putString("book_id", book_id);
                 intent2.putExtras(bundle);
                 startActivity(intent2);
                 finish();
-                return true;
-            case R.id.action_search:
-                Bundle bundle3 = new Bundle();
-                Intent intent3 = new Intent(this, SearchController.class);
-                bundle3.putString("book_id", book_id);
-                intent3.putExtras(bundle3);
-                startActivity(intent3);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -134,5 +138,22 @@ public class ViewController extends ActionBarActivity{
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            listView.clearTextFilter();
+        } else {
+            listView.setFilterText(newText);
+
+        }
+        return true;
+    }
+
 
 }

@@ -80,7 +80,7 @@ public class SearchController extends ActionBarActivity implements SearchView.On
     {
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryTextListener(this);
-        mSearchView.setSubmitButtonEnabled(true);
+        //mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setQueryHint("Pencarian");
     }
 
@@ -137,6 +137,7 @@ public class SearchController extends ActionBarActivity implements SearchView.On
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+        finish();
     }
 
     @Override

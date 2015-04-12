@@ -50,7 +50,7 @@ public class SearchController extends ActionBarActivity implements SearchView.On
         Bundle bundle = this.getIntent().getExtras();
         if (bundle.containsKey("book_id")){
             book_id = bundle.getString("book_id");
-            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+            overridePendingTransition(R.anim.pull_in_down, R.anim.push_out_up);
             GetDataGuest getDataGuest = new GetDataGuest();
             getDataGuest.init(SearchController.this, jsresult, book_id, url);
         }
@@ -136,7 +136,7 @@ public class SearchController extends ActionBarActivity implements SearchView.On
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+        overridePendingTransition(R.anim.pull_in_up, R.anim.push_out_down);
         finish();
     }
 
@@ -155,6 +155,5 @@ public class SearchController extends ActionBarActivity implements SearchView.On
         }
         return true;
     }
-
 
 }

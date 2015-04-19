@@ -26,7 +26,7 @@ public class GuestBaseAdapter extends BaseAdapter implements Filterable {
     public ArrayList<Guest> searchArrayList;
     public ArrayList<Guest> orig;
     private LayoutInflater mInflater;
-    String urlpic = "http://"+ip2+"/guestbook/images/";
+    String urlpic = "http://"+ip+"/guestbook/images/";
 
     public GuestBaseAdapter(Context context, ArrayList<Guest> results1) {
         searchArrayList =results1;

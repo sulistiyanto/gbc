@@ -86,7 +86,7 @@ public class LoginController extends ActionBarActivity {
     void login(){
         try {
             httpClient = new DefaultHttpClient();
-            httpPost = new HttpPost("http://"+ip2+"/guestbook/login.php");
+            httpPost = new HttpPost("http://"+ip+"/guestbook/login.php");
 
             //add data
             nameValuePairs = new ArrayList<NameValuePair>(3);

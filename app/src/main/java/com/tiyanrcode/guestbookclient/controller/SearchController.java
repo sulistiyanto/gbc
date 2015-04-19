@@ -35,7 +35,7 @@ public class SearchController extends ActionBarActivity implements SearchView.On
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
     SearchView mSearchView;
-    String url = "http://"+ip2+"/guestbook/guest_service.php";
+    String url = "http://"+ip+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
 

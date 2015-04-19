@@ -36,7 +36,7 @@ public class ViewController extends ActionBarActivity{
     Guest guest;
     ArrayList<Guest> guests = new ArrayList<Guest>();
     ListView listView;
-    String url = "http://"+ip2+"/guestbook/guest_service.php";
+    String url = "http://"+ip+"/guestbook/guest_service.php";
     String book_id;
     GuestBaseAdapter guestBaseAdapter;
 

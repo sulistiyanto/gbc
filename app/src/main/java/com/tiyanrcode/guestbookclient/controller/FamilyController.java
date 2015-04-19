@@ -50,9 +50,9 @@ public class FamilyController extends ActionBarActivity {
     ImageView imgFoto;
     CheckBox checkName;
     ImageButton update;
-    String url = "http://"+ip2+"/guestbook/family_service.php";
-    String urlpic = "http://"+ip2+"/guestbook/images/";
-    String urlUpdate = "http://"+ip2+"/guestbook/update_guest.php";
+    String url = "http://"+ip+"/guestbook/family_service.php";
+    String urlpic = "http://"+ip+"/guestbook/images/";
+    String urlUpdate = "http://"+ip+"/guestbook/update_guest.php";
     String book_id, guest_id, guest_name, guest_foto, guest_presence;
     FamilyBaseAdapter familyBaseAdapter;
     HttpClient httpClient;
